@@ -22,6 +22,7 @@ public class HomebankingApplication {
 
 	}
 
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
