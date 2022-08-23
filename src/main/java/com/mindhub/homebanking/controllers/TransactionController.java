@@ -32,53 +32,68 @@ public class TransactionController {
     private AccountRepository accountRepository;
 
     @PostMapping("/transactions")
-    public ResponseEntity<Object> postAccountDTO(
-            Authentication authentication,
-            @RequestParam Double amount, @RequestParam String description,
-            @RequestParam String fromAccountNumber, @RequestParam String toAccountNumber){
+    public ResponseEntity<Object> postTransactionDTO(Authentication authentication,
+                                                     @RequestParam Double amount, @RequestParam String description,
+                                                     @RequestParam String fromAccountNumber, @RequestParam String toAccountNumber){
 
 
-        if(amount == 0 || description.isEmpty() || toAccountNumber.isEmpty() || fromAccountNumber.isEmpty()){
+
+        if (amount ==0 || description.isEmpty() || toAccountNumber.isEmpty() || fromAccountNumber.isEmpty()) {
+
             return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+
         }
 
-        Account cuentaOrigen= this.accountRepository.findByNumber(fromAccountNumber);
-        if(cuentaOrigen==null){
-            return new ResponseEntity<>("Nonexistent Account", HttpStatus.FORBIDDEN);
-        }
+        Account cuentaOrigen=this.accountRepository.findByNumber(fromAccountNumber);
+        Account cuentaDestino;
 
-        Client autClient = this.clientRepository.findByEmail(authentication.getName());
-        if(!autClient.getAccounts().contains(cuentaOrigen)){
-            return new ResponseEntity<>("This is not your Account", HttpStatus.FORBIDDEN);
-        }
-
-        Account cuentaDestino= this.accountRepository.findByNumber(toAccountNumber);
-        if(cuentaDestino==null){
-            return new ResponseEntity<>("Nonexistent destination Account ", HttpStatus.FORBIDDEN);
-        }
-
-        if(cuentaOrigen.equals(cuentaDestino)){
-            return new ResponseEntity<>("Same account", HttpStatus.FORBIDDEN);
-        }
-
-        if(cuentaOrigen.getBalance()<amount){
-            return new ResponseEntity<>("Insuficient money", HttpStatus.FORBIDDEN);
+        if (toAccountNumber.length()>10){
+            cuentaDestino=this.accountRepository.findByCbu(toAccountNumber);
+        } else{
+            cuentaDestino=this.accountRepository.findByNumber(toAccountNumber);
         }
 
 
-        Transaction newTransaction1 = new Transaction(TransactionType.DEBIT, -amount,description,fromAccountNumber,toAccountNumber);
-        Transaction newTransaction2 = new Transaction(TransactionType.CREDIT, amount,description,fromAccountNumber,toAccountNumber);
+        if (cuentaOrigen==null){
+            return new ResponseEntity<>("La cuenta de origen no existe", HttpStatus.FORBIDDEN);
+        }
+
+        Client autClient=this.clientRepository.findByEmail(authentication.getName());
+
+        if (!autClient.getAccounts().contains(cuentaOrigen)){
+            return new ResponseEntity<>("Esta cuenta no pertenece a este cliente", HttpStatus.FORBIDDEN);
+        }
+
+        if (cuentaDestino==null){
+            return new ResponseEntity<>("La cuenta de destino no existe", HttpStatus.FORBIDDEN);
+        }
+
+
+        if (cuentaOrigen.equals(cuentaDestino)){
+            return new ResponseEntity<>("No se puede realizar transacciones a la misma cuenta", HttpStatus.FORBIDDEN);
+        }
+
+        if (cuentaOrigen.getBalance()<amount){
+            return new ResponseEntity<>("No se puede realizar la trasferencia por falta de fondos", HttpStatus.FORBIDDEN);
+        }
+
+
+        Transaction newTransaction1 = new Transaction(TransactionType.DEBIT,-amount,description,fromAccountNumber,toAccountNumber);
+        Transaction newTransaction2=new Transaction(TransactionType.CREDIT,amount,description,fromAccountNumber,toAccountNumber);
+
+        cuentaOrigen.addTransaction(newTransaction1);
+        cuentaDestino.addTransaction(newTransaction2);
 
         transactionRepository.save(newTransaction1);
         transactionRepository.save(newTransaction2);
 
         cuentaOrigen.setBalance(cuentaOrigen.getBalance()-amount);
-        cuentaDestino.setBalance((cuentaDestino.getBalance()+amount));
+        cuentaDestino.setBalance(cuentaDestino.getBalance()+amount);
 
-        accountRepository.save(cuentaOrigen);
         accountRepository.save(cuentaDestino);
+        accountRepository.save(cuentaOrigen);
 
-        return new ResponseEntity<>("Succesful transaction", HttpStatus.CREATED);
+        return new ResponseEntity<>("Transaccion realizada con exito", HttpStatus.CREATED);
 
 
     }

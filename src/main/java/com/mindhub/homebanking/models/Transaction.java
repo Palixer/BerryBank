@@ -22,6 +22,9 @@ public class Transaction {
     private String ctaOrigen;
     private String ctaDestino;
 
+    private String fromCbu;
+    private String toCbu;
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="account_id")
@@ -37,6 +40,7 @@ public class Transaction {
         this.creationDate = new Date();
         this.ctaOrigen = ctaOrigen;
         this.ctaDestino= ctaDestino;
+
 ;    }
 
     public Long getId() {
@@ -87,7 +91,21 @@ public class Transaction {
         this.account = account;
     }
 
+    public String getFromCbu() {
+        return fromCbu;
+    }
 
+    public void setFromCbu(String fromCbu) {
+        this.fromCbu = fromCbu;
+    }
+
+    public String getToCbu() {
+        return toCbu;
+    }
+
+    public void setToCbu(String toCbu) {
+        this.toCbu = toCbu;
+    }
 
     @Override
     public String toString() {
