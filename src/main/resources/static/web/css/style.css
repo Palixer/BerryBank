@@ -49,7 +49,7 @@
 }
 
 .welcome{
-    background: linear-gradient(45deg,#ee0979,#ff6a00);
+    background: red;
 }
 
 .welcome-logo{
@@ -57,8 +57,8 @@
 }
 
 .index-body{
-    background-image: url(../img/avila.jpg);
-    background-size: cover;
+   background-image: url("../../../img/vecteezy_strawberry-seamless-background-vector-on-white-background_7267000.jpg");
+    background-size: 200px;
     background-attachment: fixed;
 }
 
