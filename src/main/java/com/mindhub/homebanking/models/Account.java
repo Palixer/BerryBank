@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,6 +19,7 @@ public class Account {
     private String number;
     private Date creationDate;
     private Double balance;
+    private String cbu;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
@@ -37,6 +37,7 @@ public class Account {
         this.creationDate = new Date();
         this.balance = balance;
         this.client= client;
+        this.cbu = ("0017" + (int) (Math.random() * (100)) + (int) (Math.random() * (100000000))+ this.number.substring(4)+ (int) (Math.random() * (10)));
     }
 
     @OneToMany(mappedBy="account", fetch=FetchType.EAGER)
@@ -84,7 +85,15 @@ public class Account {
         this.client = client;
       }
 
-      public void addTransaction(Transaction transaction) {
+    public String getCbu() {
+        return cbu;
+    }
+
+    public void setCbu(String cbu) {
+        this.cbu = cbu;
+    }
+
+    public void addTransaction(Transaction transaction) {
           transaction.setAccount(this);
           transactions.add(transaction);
       }
