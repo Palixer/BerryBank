@@ -44,12 +44,12 @@
 }
 
 .menu-logo{
-    width: 100px;
-    height: 40px;
+    width: 100%;
+    height: auto;
 }
 
 .welcome{
-    background: red;
+    background: antiquewhite;
 }
 
 .welcome-logo{
