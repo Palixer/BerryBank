@@ -6,8 +6,8 @@ var app = new Vue({
         debitCards: [],
         errorToats: null,
         errorMsg: null,
-        accountFromNumber: "VIN",
-        accountToNumber: "VIN",
+        accountFromNumber: "",
+        accountToNumber: "",
         trasnferType: "own",
         amount: 0,
         description: ""
@@ -64,12 +64,12 @@ var app = new Vue({
         },
         changedType: function(){
             this.accountFromNumber = "VIN";
-            this.accountToNumber = "VIN";
+            this.accountToNumber = "";
         },
         changedFrom: function(){
             if(this.trasnferType == "own"){
                 this.clientAccountsTo = this.clientAccounts.filter(account => account.number != this.accountFromNumber);
-                this.accountToNumber = "VIN";
+                this.accountToNumber = "";
             }
         },
         finish: function(){

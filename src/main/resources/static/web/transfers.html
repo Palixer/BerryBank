@@ -87,7 +87,7 @@
                                     <div class="col-md">
                                         <label for="to-account" class="form-label">To account</label>
                                         <template v-if="trasnferType == 'third'">
-                                            <input id="to-account" type="text" v-model="accountToNumber" class="form-control" placeholder="VIN000554" aria-label="to account">
+                                            <input id="to-account" type="text" v-model="accountToNumber" class="form-control" placeholder="VIN OR CBU" aria-label="to account">
                                         </template>
                                         <template v-if="trasnferType == 'own'">
                                             <select id="to-account" v-model="accountToNumber" class="form-select" aria-label="Default select example" required>
