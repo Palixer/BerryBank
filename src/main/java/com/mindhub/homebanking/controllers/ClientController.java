@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import com.mindhub.homebanking.repositories.AccountRepository;
 
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -52,7 +53,7 @@ public class ClientController {
 
             @RequestParam String firstName, @RequestParam String lastName,
 
-            @RequestParam String email, @RequestParam String password) {
+            @RequestParam String email, @RequestParam String password) throws IOException {
 
 
 
