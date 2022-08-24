@@ -1,13 +1,14 @@
 .account{
+   background-image: url("../../../web/img/fondoTransp.png");
+
     color: black;
     box-shadow: 1px 1px 5px black;
       background-size: 150px;
+
+
 }
 
-.background.img{
-background-image: url("../../../web/img/vecteezy_strawberry-seamless-background-vector-on-white-background_7267000.jpg");
-opacity:0.3;
-}
+
 
 .account:hover{
     box-shadow: 2px 2px 10px black;
@@ -44,8 +45,7 @@ opacity:0.3;
 }
 
 .loan{
-    background: linear-gradient(45deg,#ee09cf,#0026ff);
-    color: white;
+background: linear-gradient(90deg, rgba(228,219,219,1) 0%, rgba(232,28,11,1) 35%, rgba(176,13,16,1) 100%);    color: white;
 }
 
 .menu-logo{
