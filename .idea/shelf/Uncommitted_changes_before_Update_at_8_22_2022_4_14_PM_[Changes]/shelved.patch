@@ -1,0 +1,201 @@
+Index: src/main/java/com/mindhub/homebanking/controllers/CardController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.mindhub.homebanking.controllers;\r\n\r\nimport com.mindhub.homebanking.dtos.AccountDTO;\r\nimport com.mindhub.homebanking.dtos.CardDTO;\r\nimport com.mindhub.homebanking.models.*;\r\nimport com.mindhub.homebanking.repositories.CardRepository;\r\nimport com.mindhub.homebanking.repositories.ClientRepository;\r\nimport com.mindhub.homebanking.utils.CardUtils;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.http.HttpStatus;\r\nimport org.springframework.http.ResponseEntity;\r\nimport org.springframework.security.core.Authentication;\r\nimport org.springframework.web.bind.annotation.PostMapping;\r\nimport org.springframework.web.bind.annotation.RequestMapping;\r\nimport org.springframework.web.bind.annotation.RequestParam;\r\nimport org.springframework.web.bind.annotation.RestController;\r\n\r\nimport java.util.Date;\r\nimport java.util.List;\r\nimport java.util.stream.Collectors;\r\n\r\n@RestController\r\n@RequestMapping(\"/api\")\r\npublic class CardController {\r\n\r\n    @Autowired\r\n    private CardRepository cardRepository;\r\n\r\n    @RequestMapping(\"/cards\")\r\n    public List<CardDTO> findAll() {\r\n        return cardRepository.findAll().stream().map(card -> new CardDTO(card)).collect(Collectors.toList());\r\n    }\r\n    @Autowired\r\n    private ClientRepository clientRepository;\r\n\r\n    @PostMapping(path = \"/clients/current/cards\")\r\n    public ResponseEntity<Object> postAccountDTO(Authentication authentication,\r\n    @RequestParam CardType cardType, @RequestParam CardColor cardColor) {\r\n        Client newClient= this.clientRepository.findByEmail(authentication.getName());\r\n\r\n        if (cardRepository.findByTypeAndClient(cardType, newClient).size()>2){\r\n            return new ResponseEntity<>(\"3 cards max\", HttpStatus.FORBIDDEN);\r\n        }\r\n\r\n        /*\r\n        if (cardRepository.findByColor(cardColor, newClient).size()>2){\r\n            return new ResponseEntity<>(\"Solo podés tener 3 tarjetas del mismo color\", HttpStatus.FORBIDDEN);\r\n        }\r\n\r\n         */\r\n\r\n\r\n\r\n        Card newCard = new Card(CardUtils.getCardNumber(1000,9999),CardUtils.getCVVNumber(100,999),cardType,cardColor,newClient); //NUEVO++***\r\n\r\n\r\n\r\n        cardRepository.save(newCard);\r\n\r\n\r\n        return new ResponseEntity<>(\"New card created\", HttpStatus.CREATED);\r\n\r\n    }\r\n\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/mindhub/homebanking/controllers/CardController.java b/src/main/java/com/mindhub/homebanking/controllers/CardController.java
+--- a/src/main/java/com/mindhub/homebanking/controllers/CardController.java	(revision 13d06f1b3542fb3c79eb2c9382c9e2709cd891a2)
++++ b/src/main/java/com/mindhub/homebanking/controllers/CardController.java	(date 1661194540922)
+@@ -1,11 +1,10 @@
+ package com.mindhub.homebanking.controllers;
+ 
+-import com.mindhub.homebanking.dtos.AccountDTO;
+ import com.mindhub.homebanking.dtos.CardDTO;
+ import com.mindhub.homebanking.models.*;
+ import com.mindhub.homebanking.repositories.CardRepository;
+ import com.mindhub.homebanking.repositories.ClientRepository;
+-import com.mindhub.homebanking.utils.CardUtils;
++import com.mindhub.homebanking.repositories.utils.CardUtils;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.http.HttpStatus;
+ import org.springframework.http.ResponseEntity;
+@@ -15,7 +14,6 @@
+ import org.springframework.web.bind.annotation.RequestParam;
+ import org.springframework.web.bind.annotation.RestController;
+ 
+-import java.util.Date;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+new file mode 100644
+--- /dev/null	(date 1661194473263)
++++ b/.idea/compiler.xml	(date 1661194473263)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CompilerConfiguration">
++    <bytecodeTargetLevel target="11" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1661194473215)
++++ b/.idea/misc.xml	(date 1661194473215)
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ExternalStorageConfigurationManager" enabled="true" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
++</project>
+\ No newline at end of file
+Index: src/main/java/com/mindhub/homebanking/utils/CardUtils.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/mindhub/homebanking/utils/CardUtils.java b/src/main/java/com/mindhub/homebanking/repositories/utils/CardUtils.java
+rename from src/main/java/com/mindhub/homebanking/utils/CardUtils.java
+rename to src/main/java/com/mindhub/homebanking/repositories/utils/CardUtils.java
+--- a/src/main/java/com/mindhub/homebanking/utils/CardUtils.java	(revision 13d06f1b3542fb3c79eb2c9382c9e2709cd891a2)
++++ b/src/main/java/com/mindhub/homebanking/repositories/utils/CardUtils.java	(date 1661194540823)
+@@ -1,4 +1,4 @@
+-package com.mindhub.homebanking.utils;
++package com.mindhub.homebanking.repositories.utils;
+ 
+ public final class CardUtils {
+ 
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+--- /dev/null	(date 1661194456086)
++++ b/.idea/.gitignore	(date 1661194456086)
+@@ -0,0 +1,3 @@
++# Default ignored files
++/shelf/
++/workspace.xml
+Index: src/test/java/com/mindhub/homebanking/CardUtilsTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.mindhub.homebanking;\r\n\r\n\r\nimport com.mindhub.homebanking.utils.CardUtils;\r\nimport org.junit.jupiter.api.Test;\r\nimport org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;\r\nimport org.springframework.boot.test.context.SpringBootTest;\r\n\r\nimport static org.hamcrest.MatcherAssert.assertThat;\r\nimport static org.hamcrest.Matchers.*;\r\n\r\n@SpringBootTest\r\n@AutoConfigureTestDatabase()\r\npublic class CardUtilsTest {\r\n\r\n    @Test\r\n    public void cardNumberCreated(){\r\n        String cardNumber = CardUtils.getCardNumber(1001,10000);\r\n        assertThat(cardNumber,is(not(emptyOrNullString())));\r\n    }\r\n\r\n    @Test\r\n    public void CVVIsCreated(){\r\n        int cvv = CardUtils.getCVVNumber(101,1000);\r\n        assertThat(cvv,is(not(0)));\r\n        //assertThat(cvv,lessThan());\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/com/mindhub/homebanking/CardUtilsTest.java b/src/test/java/com/mindhub/homebanking/CardUtilsTest.java
+--- a/src/test/java/com/mindhub/homebanking/CardUtilsTest.java	(revision 13d06f1b3542fb3c79eb2c9382c9e2709cd891a2)
++++ b/src/test/java/com/mindhub/homebanking/CardUtilsTest.java	(date 1661194540863)
+@@ -1,7 +1,7 @@
+ package com.mindhub.homebanking;
+ 
+ 
+-import com.mindhub.homebanking.utils.CardUtils;
++import com.mindhub.homebanking.repositories.utils.CardUtils;
+ import org.junit.jupiter.api.Test;
+ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+ import org.springframework.boot.test.context.SpringBootTest;
+Index: .idea/jarRepositories.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/jarRepositories.xml b/.idea/jarRepositories.xml
+new file mode 100644
+--- /dev/null	(date 1661194492774)
++++ b/.idea/jarRepositories.xml	(date 1661194492774)
+@@ -0,0 +1,20 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RemoteRepositoriesConfiguration">
++    <remote-repository>
++      <option name="id" value="central" />
++      <option name="name" value="Maven Central repository" />
++      <option name="url" value="https://repo1.maven.org/maven2" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="jboss.community" />
++      <option name="name" value="JBoss Community repository" />
++      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="MavenRepo" />
++      <option name="name" value="MavenRepo" />
++      <option name="url" value="https://repo.maven.apache.org/maven2/" />
++    </remote-repository>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+new file mode 100644
+--- /dev/null	(date 1661194455478)
++++ b/.idea/gradle.xml	(date 1661194455478)
+@@ -0,0 +1,18 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="GradleSettings">
++    <option name="linkedExternalProjectsSettings">
++      <GradleProjectSettings>
++        <option name="distributionType" value="DEFAULT_WRAPPED" />
++        <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="gradleHome" value="$PROJECT_DIR$/../../../../../gradle-7.5" />
++        <option name="gradleJvm" value="#JAVA_HOME" />
++        <option name="modules">
++          <set>
++            <option value="$PROJECT_DIR$" />
++          </set>
++        </option>
++      </GradleProjectSettings>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/.name
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.name b/.idea/.name
+new file mode 100644
+--- /dev/null	(date 1661194473139)
++++ b/.idea/.name	(date 1661194473139)
+@@ -0,0 +1,1 @@
++homebanking
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1661194455556)
++++ b/.idea/vcs.xml	(date 1661194455556)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file

@@ -1,0 +1,262 @@
+Index: build/resources/main/static/web/css/style.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>.account{\r\n    background: linear-gradient(45deg,#ee0979,#ff6a00);\r\n    color: white;\r\n    box-shadow: 1px 1px 5px black;\r\n}\r\n\r\n.account:hover{\r\n    box-shadow: 2px 2px 10px black;\r\n}\r\n\r\n.account-details-header{\r\n    background: linear-gradient(45deg,#ee0979,#ff6a00);\r\n    color: white;\r\n}\r\n\r\n.account-balance{\r\n    font-size: 2em;\r\n    margin: 0px;\r\n}\r\n\r\n.account-link{\r\n    text-decoration: none;\r\n}\r\n\r\n.subtitle {\r\n    display: inline;\r\n}\r\n\r\n#create{\r\n    margin-bottom: 15px;\r\n}\r\n\r\n.credit-transaction{\r\n    color: green;\r\n}\r\n\r\n.debit-transaction{\r\n    color: red;\r\n}\r\n\r\n.loan{\r\n    background: linear-gradient(45deg,#ee09cf,#0026ff);\r\n    color: white;\r\n}\r\n\r\n.menu-logo{\r\n    width: 150px;\r\n    height: 40px;\r\n}\r\n\r\n.welcome{\r\n    background: linear-gradient(45deg,#ee0979,#ff6a00);\r\n}\r\n\r\n.welcome-logo{\r\n    width: 60%;\r\n}\r\n\r\n.index-body{\r\n    background-image: url(../img/avila.jpg);\r\n    background-size: cover;\r\n    background-attachment: fixed;\r\n}\r\n\r\n.index-container{\r\n    margin-top: 10%;\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build/resources/main/static/web/css/style.css b/build/resources/main/static/web/css/style.css
+--- a/build/resources/main/static/web/css/style.css	(revision 3ce8cf9207d3cd76ac47bb981caab8d518eb8c43)
++++ b/build/resources/main/static/web/css/style.css	(date 1661200730510)
+@@ -49,8 +49,7 @@
+ }
+ 
+ .welcome{
+-    background: linear-gradient(45deg,#ee0979,#ff6a00);
+-}
++ background-image: url('../web/img/foto130678.jpg');}
+ 
+ .welcome-logo{
+     width: 60%;
+Index: build/resources/main/static/web/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6\" crossorigin=\"anonymous\">\r\n    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css\">\r\n    <link rel=\"stylesheet\" href=\"css/style.css\">\r\n    <title>Berry Bank\uD83C\uDF53</title>\r\n</head>\r\n<body class=\"index-body\">\r\n<div id=\"app\">\r\n    <div class=\"toast-container position-absolute p-3 top-0 end-0\" id=\"toastPlacement\">\r\n        <div id=\"danger-toast\" data-bs-delay=\"2000\" class=\"toast align-items-center text-white bg-danger border-0\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\">\r\n            <div class=\"d-flex\">\r\n                <div class=\"toast-body\">\r\n                    {{ errorMsg }}\r\n                </div>\r\n                <button type=\"button\" class=\"btn-close btn-close-white me-2 m-auto\" data-bs-dismiss=\"toast\" aria-label=\"Close\"></button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"container index-container\">\r\n        <div class=\"row justify-content-center\">\r\n            <div class=\"col-md-12 col-lg-10\">\r\n                <div class=\"wrap d-md-flex justify-content-center bg-light shadow\">\r\n                    <div class=\"text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last welcome shadow-sm\">\r\n                        <div class=\"text w-100\">\r\n                            <img class=\"welcome-logo\" src=\"img/logo vinotinto.png\">\r\n                            <h2>Welcome to V Bank</h2>\r\n                            <template v-if=\"!showSignUp\">\r\n                                <p>Don't have an account?</p>\r\n                                <button v-on:click=\"showSignUpToogle\" class=\"btn btn-light\">Sign Up</button>\r\n                            </template>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"login-wrap p-4 p-lg-5\">\r\n                        <template v-if=\"!showSignUp\">\r\n                            <div class=\"d-flex\">\r\n                                <div class=\"w-100\">\r\n                                    <h3 class=\"mb-4\">Sign In</h3>\r\n                                </div>\r\n                            </div>\r\n                            <form action=\"#\" class=\"signin-form\" v-on:submit=\"signIn($event)\">\r\n                                <div class=\"form-group mb-3\">\r\n                                    <label class=\"label\" for=\"email\">Email</label>\r\n                                    <input v-model=\"email\" id=\"email\" type=\"email\" class=\"form-control\" placeholder=\"email@mail.com\" required>\r\n                                </div>\r\n                                <div class=\"form-group mb-3\">\r\n                                    <label class=\"label\" for=\"password\">Password</label>\r\n                                    <input v-model=\"password\" id=\"password\" type=\"password\" class=\"form-control\" placeholder=\"Password\" required autocomplete=\"off\">\r\n                                </div>\r\n                                <div class=\"form-group\">\r\n                                    <button type=\"submit\" class=\"form-control btn btn-primary px-3\">Sign In</button>\r\n                                </div>\r\n                            </form>\r\n                        </template>\r\n                        <template v-else>\r\n                            <div class=\"d-flex\">\r\n                                <div class=\"w-100\">\r\n                                    <h3 class=\"mb-4\">Sign Up</h3>\r\n                                </div>\r\n                            </div>\r\n                            <form action=\"#\" class=\"signout-form\" v-on:submit=\"signUp($event)\">\r\n                                <div class=\"form-group mb-3\">\r\n                                    <label class=\"label\" for=\"firstName\">First name</label>\r\n                                    <input v-model=\"firstName\" id=\"firstName\" type=\"text\" class=\"form-control\" placeholder=\"Juan\" required>\r\n                                </div>\r\n                                <div class=\"form-group mb-3\">\r\n                                    <label class=\"lastName\" for=\"lastName\">Last name</label>\r\n                                    <input v-model=\"lastName\" id=\"lastName\" type=\"text\" class=\"form-control\" placeholder=\"Martinez\" required>\r\n                                </div>\r\n                                <div class=\"form-group mb-3\">\r\n                                    <label class=\"label\" for=\"remail\">Email</label>\r\n                                    <input v-model=\"email\" id=\"remail\" type=\"remail\" class=\"form-control\" placeholder=\"email@mail.com\" required>\r\n                                </div>\r\n                                <div class=\"form-group mb-3\">\r\n                                    <label class=\"label\" for=\"rpassword\">Password</label>\r\n                                    <input v-model=\"password\" id=\"rpassword\" type=\"password\" class=\"form-control\" placeholder=\"Password\" required autocomplete=\"off\">\r\n                                </div>\r\n                                <div class=\"form-group\">\r\n                                    <button type=\"submit\" class=\"form-control btn btn-primary px-3\">Sign Up</button>\r\n                                    <a v-on:click=\"showSignUpToogle\" href=\"#\" class=\"link-secondary\"><small>cancel</small></a>\r\n                                </div>\r\n                            </form>\r\n                        </template>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n</div>\r\n\r\n<script src=\"https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js\"></script>\r\n<script src=\"https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js\"></script>\r\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf\" crossorigin=\"anonymous\"></script>\r\n<script src=\"js/index.js\"></script>\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build/resources/main/static/web/index.html b/build/resources/main/static/web/index.html
+--- a/build/resources/main/static/web/index.html	(revision 3ce8cf9207d3cd76ac47bb981caab8d518eb8c43)
++++ b/build/resources/main/static/web/index.html	(date 1661200730515)
+@@ -27,7 +27,7 @@
+                     <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last welcome shadow-sm">
+                         <div class="text w-100">
+                             <img class="welcome-logo" src="img/logo vinotinto.png">
+-                            <h2>Welcome to V Bank</h2>
++                            <h2>Bienvenidos a Berry Bank🍓</h2>
+                             <template v-if="!showSignUp">
+                                 <p>Don't have an account?</p>
+                                 <button v-on:click="showSignUpToogle" class="btn btn-light">Sign Up</button>
+Index: src/main/java/com/mindhub/homebanking/controllers/CardController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.mindhub.homebanking.controllers;\r\n\r\nimport com.mindhub.homebanking.dtos.AccountDTO;\r\nimport com.mindhub.homebanking.dtos.CardDTO;\r\nimport com.mindhub.homebanking.models.*;\r\nimport com.mindhub.homebanking.repositories.CardRepository;\r\nimport com.mindhub.homebanking.repositories.ClientRepository;\r\nimport com.mindhub.homebanking.utils.CardUtils;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.http.HttpStatus;\r\nimport org.springframework.http.ResponseEntity;\r\nimport org.springframework.security.core.Authentication;\r\nimport org.springframework.web.bind.annotation.PostMapping;\r\nimport org.springframework.web.bind.annotation.RequestMapping;\r\nimport org.springframework.web.bind.annotation.RequestParam;\r\nimport org.springframework.web.bind.annotation.RestController;\r\n\r\nimport java.util.Date;\r\nimport java.util.List;\r\nimport java.util.stream.Collectors;\r\n\r\n@RestController\r\n@RequestMapping(\"/api\")\r\npublic class CardController {\r\n\r\n    @Autowired\r\n    private CardRepository cardRepository;\r\n\r\n    @RequestMapping(\"/cards\")\r\n    public List<CardDTO> findAll() {\r\n        return cardRepository.findAll().stream().map(card -> new CardDTO(card)).collect(Collectors.toList());\r\n    }\r\n    @Autowired\r\n    private ClientRepository clientRepository;\r\n\r\n    @PostMapping(path = \"/clients/current/cards\")\r\n    public ResponseEntity<Object> postAccountDTO(Authentication authentication,\r\n    @RequestParam CardType cardType, @RequestParam CardColor cardColor) {\r\n        Client newClient= this.clientRepository.findByEmail(authentication.getName());\r\n\r\n        if (cardRepository.findByTypeAndClient(cardType, newClient).size()>2){\r\n            return new ResponseEntity<>(\"3 cards max\", HttpStatus.FORBIDDEN);\r\n        }\r\n\r\n        /*\r\n        if (cardRepository.findByColor(cardColor, newClient).size()>2){\r\n            return new ResponseEntity<>(\"Solo podés tener 3 tarjetas del mismo color\", HttpStatus.FORBIDDEN);\r\n        }\r\n\r\n         */\r\n\r\n\r\n\r\n        Card newCard = new Card(CardUtils.getCardNumber(1000,9999),CardUtils.getCVVNumber(100,999),cardType,cardColor,newClient); //NUEVO++***\r\n\r\n\r\n\r\n        cardRepository.save(newCard);\r\n\r\n\r\n        return new ResponseEntity<>(\"New card created\", HttpStatus.CREATED);\r\n\r\n    }\r\n\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/mindhub/homebanking/controllers/CardController.java b/src/main/java/com/mindhub/homebanking/controllers/CardController.java
+--- a/src/main/java/com/mindhub/homebanking/controllers/CardController.java	(revision 3ce8cf9207d3cd76ac47bb981caab8d518eb8c43)
++++ b/src/main/java/com/mindhub/homebanking/controllers/CardController.java	(date 1661199234941)
+@@ -1,11 +1,10 @@
+ package com.mindhub.homebanking.controllers;
+ 
+-import com.mindhub.homebanking.dtos.AccountDTO;
+ import com.mindhub.homebanking.dtos.CardDTO;
+ import com.mindhub.homebanking.models.*;
+ import com.mindhub.homebanking.repositories.CardRepository;
+ import com.mindhub.homebanking.repositories.ClientRepository;
+-import com.mindhub.homebanking.utils.CardUtils;
++import com.mindhub.homebanking.repositories.utils.CardUtils;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.http.HttpStatus;
+ import org.springframework.http.ResponseEntity;
+@@ -15,7 +14,6 @@
+ import org.springframework.web.bind.annotation.RequestParam;
+ import org.springframework.web.bind.annotation.RestController;
+ 
+-import java.util.Date;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1661199234888)
++++ b/.idea/vcs.xml	(date 1661199234888)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+new file mode 100644
+--- /dev/null	(date 1661199234899)
++++ b/.idea/gradle.xml	(date 1661199234899)
+@@ -0,0 +1,18 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="GradleSettings">
++    <option name="linkedExternalProjectsSettings">
++      <GradleProjectSettings>
++        <option name="distributionType" value="DEFAULT_WRAPPED" />
++        <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="gradleHome" value="$PROJECT_DIR$/../../../../../gradle-7.5" />
++        <option name="gradleJvm" value="#JAVA_HOME" />
++        <option name="modules">
++          <set>
++            <option value="$PROJECT_DIR$" />
++          </set>
++        </option>
++      </GradleProjectSettings>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: src/main/java/com/mindhub/homebanking/utils/CardUtils.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/mindhub/homebanking/utils/CardUtils.java b/src/main/java/com/mindhub/homebanking/repositories/utils/CardUtils.java
+rename from src/main/java/com/mindhub/homebanking/utils/CardUtils.java
+rename to src/main/java/com/mindhub/homebanking/repositories/utils/CardUtils.java
+--- a/src/main/java/com/mindhub/homebanking/utils/CardUtils.java	(revision 3ce8cf9207d3cd76ac47bb981caab8d518eb8c43)
++++ b/src/main/java/com/mindhub/homebanking/repositories/utils/CardUtils.java	(date 1661199234961)
+@@ -1,4 +1,4 @@
+-package com.mindhub.homebanking.utils;
++package com.mindhub.homebanking.repositories.utils;
+ 
+ public final class CardUtils {
+ 
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+new file mode 100644
+--- /dev/null	(date 1661199235015)
++++ b/.idea/compiler.xml	(date 1661199235015)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CompilerConfiguration">
++    <bytecodeTargetLevel target="11" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+--- /dev/null	(date 1661199235044)
++++ b/.idea/.gitignore	(date 1661199235044)
+@@ -0,0 +1,3 @@
++# Default ignored files
++/shelf/
++/workspace.xml
+Index: .idea/.name
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.name b/.idea/.name
+new file mode 100644
+--- /dev/null	(date 1661199234923)
++++ b/.idea/.name	(date 1661199234923)
+@@ -0,0 +1,1 @@
++homebanking
+\ No newline at end of file
+Index: build/resources/main/static/manager.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <title>Client Manager</title>\r\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6\" crossorigin=\"anonymous\">\r\n</head>\r\n<body>\r\n<div id=\"app\" class=\"container\">\r\n    <div class=\"row\">\r\n        <div class=\"col\">\r\n            <h1>Client Manager</h1>\r\n            <form action=\"#\" onsubmit=\"return false\">\r\n                <div class=\"mb-3\">\r\n                    <label for=\"name\" class=\"form-label\">Name:</label>\r\n                    <input type=\"text\" v-model:value=\"firstName\" class=\"form-control\" id=\"name\" placeholder=\"David\" required>\r\n                </div>\r\n                <div class=\"mb-3\">\r\n                    <label for=\"lastname\" class=\"form-label\">Last name:</label>\r\n                    <input type=\"text\" v-model:value=\"lastName\" class=\"form-control\" id=\"lastname\" placeholder=\"Doe\" required>\r\n                </div>\r\n                <div class=\"mb-3\">\r\n                    <label for=\"email\" class=\"form-label\">Email address:</label>\r\n                    <input type=\"email\" v-model:value=\"email\" class=\"form-control\" id=\"email\" placeholder=\"david@aol.com\" required>\r\n                </div>\r\n                <button type=\"submit\" class=\"btn btn-success\" id=\"add_client\" v-on:click=\"addClient\">Add client</button>\r\n            </form>\r\n            <div class=\"table-responsive mt-4\">\r\n                <h2>Client list</h2>\r\n                <table class=\"table table-striped table-hover\">\r\n                    <thead>\r\n                    <tr>\r\n                        <th>First Name</th>\r\n                        <th>Last Name</th>\r\n                        <th>Email</th>\r\n                    </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                    <tr v-for=\"client in clients\">\r\n                        <td>{{ client.firstName }}</td>\r\n                        <td>{{ client.lastName }}</td>\r\n                        <td>{{ client.email }}</td>\r\n                    </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n        </div>\r\n        <div class=\"col pt-5\">\r\n            <h2>Client REST response</h2>\r\n            <pre id=\"output\">{{ outPut }}</pre>\r\n        </div>\r\n    </div>\r\n\r\n</div>\r\n\r\n<script src=\"https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js\"></script>\r\n<script src=\"https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js\"></script>\r\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf\" crossorigin=\"anonymous\"></script>\r\n<script src=\"manager.js\"></script>\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build/resources/main/static/manager.html b/build/resources/main/static/manager.html
+--- a/build/resources/main/static/manager.html	(revision 3ce8cf9207d3cd76ac47bb981caab8d518eb8c43)
++++ b/build/resources/main/static/manager.html	(date 1661200730494)
+@@ -1,8 +1,10 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
++
++//prue
+     <meta charset="UTF-8">
+-    <title>Client Manager</title>
++    <title>Client Manager Berry Bank🍓</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+ </head>
+ <body>
+Index: src/test/java/com/mindhub/homebanking/CardUtilsTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.mindhub.homebanking;\r\n\r\n\r\nimport com.mindhub.homebanking.utils.CardUtils;\r\nimport org.junit.jupiter.api.Test;\r\nimport org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;\r\nimport org.springframework.boot.test.context.SpringBootTest;\r\n\r\nimport static org.hamcrest.MatcherAssert.assertThat;\r\nimport static org.hamcrest.Matchers.*;\r\n\r\n@SpringBootTest\r\n@AutoConfigureTestDatabase()\r\npublic class CardUtilsTest {\r\n\r\n    @Test\r\n    public void cardNumberCreated(){\r\n        String cardNumber = CardUtils.getCardNumber(1001,10000);\r\n        assertThat(cardNumber,is(not(emptyOrNullString())));\r\n    }\r\n\r\n    @Test\r\n    public void CVVIsCreated(){\r\n        int cvv = CardUtils.getCVVNumber(101,1000);\r\n        assertThat(cvv,is(not(0)));\r\n        //assertThat(cvv,lessThan());\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/com/mindhub/homebanking/CardUtilsTest.java b/src/test/java/com/mindhub/homebanking/CardUtilsTest.java
+--- a/src/test/java/com/mindhub/homebanking/CardUtilsTest.java	(revision 3ce8cf9207d3cd76ac47bb981caab8d518eb8c43)
++++ b/src/test/java/com/mindhub/homebanking/CardUtilsTest.java	(date 1661199235092)
+@@ -1,7 +1,7 @@
+ package com.mindhub.homebanking;
+ 
+ 
+-import com.mindhub.homebanking.utils.CardUtils;
++import com.mindhub.homebanking.repositories.utils.CardUtils;
+ import org.junit.jupiter.api.Test;
+ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+ import org.springframework.boot.test.context.SpringBootTest;
+Index: .idea/jarRepositories.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/jarRepositories.xml b/.idea/jarRepositories.xml
+new file mode 100644
+--- /dev/null	(date 1661199235082)
++++ b/.idea/jarRepositories.xml	(date 1661199235082)
+@@ -0,0 +1,20 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RemoteRepositoriesConfiguration">
++    <remote-repository>
++      <option name="id" value="central" />
++      <option name="name" value="Maven Central repository" />
++      <option name="url" value="https://repo1.maven.org/maven2" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="jboss.community" />
++      <option name="name" value="JBoss Community repository" />
++      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="MavenRepo" />
++      <option name="name" value="MavenRepo" />
++      <option name="url" value="https://repo.maven.apache.org/maven2/" />
++    </remote-repository>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1661199235102)
++++ b/.idea/misc.xml	(date 1661199235102)
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ExternalStorageConfigurationManager" enabled="true" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
++</project>
+\ No newline at end of file

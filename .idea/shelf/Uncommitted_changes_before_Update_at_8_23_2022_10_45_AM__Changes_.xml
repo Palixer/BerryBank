@@ -1,0 +1,29 @@
+<changelist name="Uncommitted_changes_before_Update_at_8_23_2022_10_45_AM_[Changes]" date="1661262348844" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_23_2022_10_45_AM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 8/23/2022 10:45 AM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="build/tmp/compileJava/previous-compilation-data.bin" />
+    <option name="AFTER_PATH" value="build/tmp/compileJava/previous-compilation-data.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_23_2022_10_45_AM_[Changes]/previous-compilation-data.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/classes/java/main/com/mindhub/homebanking/utils/CardUtils.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/classes/java/main/com/mindhub/homebanking/HomebankingApplication.class" />
+    <option name="AFTER_PATH" value="build/classes/java/main/com/mindhub/homebanking/HomebankingApplication.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_23_2022_10_45_AM_[Changes]/HomebankingApplication.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="src/main/resources/static/web/img/foto130678.jpg" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_23_2022_10_45_AM_[Changes]/foto130678.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/classes/java/main/com/mindhub/homebanking/controllers/CardController.class" />
+    <option name="AFTER_PATH" value="build/classes/java/main/com/mindhub/homebanking/controllers/CardController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_23_2022_10_45_AM_[Changes]/CardController.class" />
+  </binary>
+</changelist>

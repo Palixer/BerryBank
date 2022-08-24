@@ -48,13 +48,7 @@ public class AccountController {
         return null;
     }
 
-    /*
-    @RequestMapping("/accounts/{id}")
-    public AccountDTO getAccountById (@PathVariable Long id){
 
-        return accountRepository.findById(id).map(AccountDTO::new).orElse(null);
-    }
-    */
 
     @Autowired
     private ClientRepository clientRepository;
