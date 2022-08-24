@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78301e82-dc2d-47fc-be92-4d4e5d46330a" name="Changes" comment="Cambio logo en CARDS">
+    <list default="true" id="78301e82-dc2d-47fc-be92-4d4e5d46330a" name="Changes" comment="Clase con utilidades para la generacion de CBU y Alias">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mindhub/homebanking/controllers/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mindhub/homebanking/controllers/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mindhub/homebanking/controllers/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mindhub/homebanking/controllers/TransactionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mindhub/homebanking/dtos/AccountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mindhub/homebanking/dtos/AccountDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mindhub/homebanking/models/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mindhub/homebanking/models/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mindhub/homebanking/repositories/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mindhub/homebanking/repositories/AccountRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +52,13 @@
         </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -275,7 +287,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661287070601</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Clase con utilidades para la generacion de CBU y Alias">
+      <created>1661351583828</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1661351583828</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -337,6 +356,7 @@
     <MESSAGE value="Cambio logo INDEX" />
     <MESSAGE value="Cambio logo en páginas" />
     <MESSAGE value="Cambio logo en CARDS" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambio logo en CARDS" />
+    <MESSAGE value="Clase con utilidades para la generacion de CBU y Alias" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clase con utilidades para la generacion de CBU y Alias" />
   </component>
 </project>

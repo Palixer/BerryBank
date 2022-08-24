@@ -1,9 +1,11 @@
 package com.mindhub.homebanking.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mindhub.homebanking.utils.AccountUtils;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,6 +22,7 @@ public class Account {
     private Date creationDate;
     private Double balance;
     private String cbu;
+    private String alias;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
@@ -32,14 +35,14 @@ public class Account {
 
         return transactions;
     }
-    public Account(String number, Double balance, Client client) {
+    public Account(String number, Double balance, Client client) throws IOException {
         this.number = number;
         this.creationDate = new Date();
         this.balance = balance;
         this.client= client;
-        this.cbu = ("0017" + (int) (Math.random() * (100)) + (int) (Math.random() * (100000000))+ this.number.substring(4)+ (int) (Math.random() * (10)));
+        this.cbu = AccountUtils.generateNewCBU(this.number);
+        this.alias = AccountUtils.generateNewAlias();
     }
-
     @OneToMany(mappedBy="account", fetch=FetchType.EAGER)
     Set<Transaction> transactions = new HashSet<>();
 
@@ -74,6 +77,12 @@ public class Account {
     public void setBalance(Double balance) {
 
         this.balance = balance;
+    }
+    public String getAlias() {
+        return alias;
+    }
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
     @JsonIgnore
       public Client getClient() {
