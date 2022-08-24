@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import com.mindhub.homebanking.repositories.ClientRepository;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -47,15 +48,6 @@ public class AccountController {
         //return accountRepository.findById(id).map(AccountDTO::new).orElse(null);
         return null;
     }
-
-    /*
-    @RequestMapping("/accounts/{id}")
-    public AccountDTO getAccountById (@PathVariable Long id){
-
-        return accountRepository.findById(id).map(AccountDTO::new).orElse(null);
-    }
-    */
-
     @Autowired
     private ClientRepository clientRepository;
 
@@ -72,7 +64,7 @@ public class AccountController {
     };
 
     @PostMapping("/clients/current/accounts")
-    public ResponseEntity<Object> postAccountDTO(Authentication authentication){
+    public ResponseEntity<Object> postAccountDTO(Authentication authentication) throws IOException {
         Client newClient= this.clientRepository.findByEmail(authentication.getName());
 
         Account newAccount = new Account("VIN-"+getRandomNumber(1000000,10000000),0.00,newClient);
@@ -84,7 +76,6 @@ public class AccountController {
         } else{
            return new ResponseEntity<>("New account created", HttpStatus.CREATED);
         }
-
     }
 
     public int getRandomNumber(int min, int max) {

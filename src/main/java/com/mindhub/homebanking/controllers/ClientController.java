@@ -74,7 +74,7 @@ public class ClientController {
 
         clientRepository.save(newClient);
 
-        Account newAccount= new Account("VIN"+getRandomNumber(1000000,10000000),0.00,newClient);
+        Account newAccount= new Account("VIN-"+getRandomNumber(1000000,10000000),0.00,newClient);
         accountRepository.save(newAccount);
 
 
