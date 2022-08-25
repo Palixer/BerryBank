@@ -66,13 +66,13 @@
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        <h1 class="display-1">{{ clientInfo.firstName }} {{ clientInfo.lastName }} {{ clientInfo.email }}</h1>
+                        <h1 class="display-6">{{ clientInfo.firstName }} {{ clientInfo.lastName }}</h1>
+                        <h2 class="small">{{ clientInfo.email }}</h2>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <h2 class="display-6 subtitle">Debit Cards</h2>
-                        <a v-if="clientInfo.cards != null && clientInfo.cards.length < 6" href="create-cards.html" id="create" class="btn btn-sm btn-outline-success">Create</a>
+                        <h4 class="display-10">Debit Cards</h4> <a v-if="clientInfo.cards != null && clientInfo.cards.length < 6" href="create-cards.html" id="create" class="btn btn-sm btn-outline-success">Create</a>
                         <div v-if="debitCards.length <= 0"><span class="small">No debit cards</span></div>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <h2 class="display-6">Credit Cards</h2>
+                        <h4 class="display-10">Credit Cards</h4>
                         <span class="small" v-if="creditCards.length <= 0">No credit cards</span>
                     </div>
                 </div>
