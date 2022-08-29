@@ -64,12 +64,12 @@
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        <h1 class="display-1">{{ clientInfo.firstName }} {{ clientInfo.lastName }}</h1>
+                        <h1 class="display-6">{{ clientInfo.firstName }} {{ clientInfo.lastName }}</h1>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <h2 class="display-6 subtitle">Accounts</h2>
+                        <h4 class="display-10 subtitle">Accounts</h4>
                         <button v-if="clientInfo.accounts != null && clientInfo.accounts.length < 3" v-on:click="create" id="create" class="btn btn-sm btn-outline-success">Create</button>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <h2 class="display-6">Loans</h2>
+                        <h4 class="display-10">Loans</h4>
                         <span class="small" v-if="clientInfo.loan != null && clientInfo.loans.length <= 0">No loans</span>
                     </div>
                 </div>
