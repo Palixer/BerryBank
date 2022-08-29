@@ -10,6 +10,9 @@ import com.mindhub.homebanking.models.ClientLoan;
 import com.mindhub.homebanking.models.Loan;
 import com.mindhub.homebanking.repositories.*;
 
+import com.mindhub.homebanking.services.AccountService;
+import com.mindhub.homebanking.services.ClientService;
+import com.mindhub.homebanking.services.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,22 +34,21 @@ public class LoanController {
     private TransactionRepository transactionRepository;
 
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientService clientService;
 
     @Autowired
-    private AccountRepository accountRepository;
+    private AccountService accountService;
 
     @Autowired
     private ClientLoanRepository clientLoanRepository;
     @Autowired
-    private LoanRepository loanRepository;
+    private LoanService loanService;
 
 
 
     @GetMapping("/loans")
     public List<LoanDTO> getLoans(){
-        return loanRepository.findAll().stream().map(loan -> new LoanDTO(loan)).collect(Collectors.toList());
-        //encuentra todos los LOANs y usa el stream y el map para convertirlos en LOANDTO
+        return loanService.getLoans();
     }
 
 
@@ -54,9 +56,9 @@ public class LoanController {
     @PostMapping("/loans")
     public ResponseEntity<Object> createClientLoan(@RequestBody LoanApplicationDTO loanApplicationDTO, Authentication authentication){
 
-        Loan loanFind = this.loanRepository.findById(loanApplicationDTO.getId()).orElse(null); //guardo la info del prestamo en una variable
-        Account accountFind = this.accountRepository.findByNumber(loanApplicationDTO.getToAccountNumber());
-        Client clientFind = this.clientRepository.findByEmail(authentication.getName());
+        Loan loanFind = this.loanService.findById(loanApplicationDTO.getId());//guardo la info del prestamo en una variable
+        Account accountFind = this.accountService.findByNumber(loanApplicationDTO.getToAccountNumber());
+        Client clientFind = this.clientService.findByEmail(authentication.getName());
 
         if(loanApplicationDTO.getId()==0){
             return new ResponseEntity<>("Not an available ID", HttpStatus.FORBIDDEN);
@@ -70,26 +72,14 @@ public class LoanController {
             return new ResponseEntity<>("Not an available amount of payments", HttpStatus.FORBIDDEN);
         }
 
-        /*
-        if(loan == null){
-            return new ResponseEntity<>("Loan not available", HttpStatus.FORBIDDEN);
-        } ;//verifica que no esa null y sino sigue
-        */
         if(accountFind.getNumber().isEmpty()){
             return new ResponseEntity<>("In Account", HttpStatus.FORBIDDEN);
         }
 
-        /*
-        if(loanApplicationDTO.getAmount()>loan.getMaxAmount()){
-            return new ResponseEntity<>("Exceeds the maximum available", HttpStatus.FORBIDDEN);
-        }*/
-
-
         ClientLoan newClientLoan= new ClientLoan(loanApplicationDTO.getAmount()+(loanApplicationDTO.getAmount()*20/100),loanApplicationDTO.getPayments(),clientFind,loanFind);
-        clientLoanRepository.save(newClientLoan);
 
-        accountFind.setBalance(accountFind.getBalance()+loanApplicationDTO.getAmount());
-        accountRepository.save(accountFind);
+
+
         return new ResponseEntity<>("Transaccion realizada con exito", HttpStatus.CREATED);
 
 }

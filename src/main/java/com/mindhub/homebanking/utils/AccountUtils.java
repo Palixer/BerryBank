@@ -29,5 +29,9 @@ public class AccountUtils {
     public static String generateNewCBU(String number) {
         return ("0017" + (int) (Math.random() * (100)) + (int) (Math.random() * (100000000))+ number.substring(4)+ (int) (Math.random() * (10)));
     }
+    public static String generateAccountNumber(){
+        return ("VIN-"+(int) ((Math.random() * (10000000 - 1000000)) + 1000000));
+    }
+
 
 }

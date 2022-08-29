@@ -118,13 +118,6 @@ public class Client {
         accounts.add(account);
     }
 
-   /* public void addClientLoan(ClientLoan clientloan) {
-        clientloan.setClient(this);
-        clientLoans.add(clientloan);
-    }*/
-
-
-
     @Override
     public String toString() {
         return "Client{" +

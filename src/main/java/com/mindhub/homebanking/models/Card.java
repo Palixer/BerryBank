@@ -46,6 +46,16 @@ public class Card {
         this.color = color;
         this.client = client;
     }
+    public Card(String number, int cvv, CardType type, CardColor color) {
+        this.cardHolder = client.getFirstName() + " " + client.getLastName();
+        this.number = number;
+        this.cvv = cvv;
+        this.thruDate = obtenerFechaDeVencimiento();
+        this.fromDate = new Date();
+        this.type = type;
+        this.color = color;
+
+    }
 
     private Date obtenerFechaDeVencimiento() {
         Calendar calendar = Calendar.getInstance();

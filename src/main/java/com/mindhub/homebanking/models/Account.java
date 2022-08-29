@@ -43,6 +43,13 @@ public class Account {
         this.cbu = AccountUtils.generateNewCBU(this.number);
         this.alias = AccountUtils.generateNewAlias();
     }
+    public Account(String number, Double balance) throws IOException {
+        this.number = number;
+        this.creationDate = new Date();
+        this.balance = balance;
+        this.cbu = AccountUtils.generateNewCBU(this.number);
+        this.alias = AccountUtils.generateNewAlias();
+    }
     @OneToMany(mappedBy="account", fetch=FetchType.EAGER)
     Set<Transaction> transactions = new HashSet<>();
 
