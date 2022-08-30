@@ -1,1 +1,1 @@
--Dserver.port=$PORT $JAVA_OPTS
+web:-Dserver.port=$PORT $JAVA_OPTS
